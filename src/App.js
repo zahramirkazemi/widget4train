@@ -2,6 +2,8 @@ import Accordion from "./components/Accordion";
 import Search from "./components/Search";
 import Dropdown from "./components/Dropdown";
 import Translate from "./components/Translate";
+import Route from "./components/Route";
+import Header from "./components/Header";
 import { useState } from "react";
 
 const items=[
@@ -38,7 +40,19 @@ function App() {
   const [selected,setSelected] = useState(options[0]);
   return (
     <div style={{marginTop: '18px'}} className="ui container">
-        <Translate/>
+      <Header/>
+        <Route path="/">
+          <Accordion items={items}/>
+        </Route>
+        <Route path="/list">
+          <Search />
+        </Route>
+        <Route path="/dropdown">
+          <Dropdown label="color" options={options} selected={selected} onSelectedChange={setSelected}/>
+        </Route>
+        <Route path="/translate">
+          <Translate />
+        </Route>
     </div>
   );
 }
